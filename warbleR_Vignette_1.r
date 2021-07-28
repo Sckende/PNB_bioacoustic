@@ -16,7 +16,7 @@ writeWave(Phae.long2, file.path(tempdir(), "Phae.long2.wav"))
 writeWave(Phae.long3, file.path(tempdir(), "Phae.long3.wav"))
 writeWave(Phae.long4, file.path(tempdir(), "Phae.long4.wav")) 
 
-# parametros globales
+# parametres globales
 warbleR_options(wav.path = tempdir())
 
 st <- selection_table(X = lbh_selec_table, pb = FALSE)
@@ -61,7 +61,7 @@ ext_st5
 all.equal(ext_st, ext_st5)
 
 # Wave object
-wv1 <- read_wave(X = ext_st, index = 3, from = 0, to = 0.37)
+wv1 <- read_wave(X = ext_st5, index = 3, from = 0, to = 0.37)
 
 class(wv1)
 spectro(wv1,
