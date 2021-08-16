@@ -1,6 +1,6 @@
 # warbleR package - Vignette 2 - Import sound files and select signals #
 # https://marce10.github.io/warbleR/articles/warbleR_workflow_01.html
-
+rm(list = ls ())
 #### ---> Prepare for analyses ####
 
 ### Install packages from CRAN
@@ -46,7 +46,7 @@ wavs <- list.files(pattern = "wav$")
 wavs 
 
 # How long are these files? this will determine number of pages returned by full_spectrograms
-duration_wavs(wavs,
+duration_wavs(wavs[3],
               path = getwd())
 
 # ovlp = 10 to speed up function
@@ -79,4 +79,16 @@ select_t <- auto_detec(flist = fight,
                        path = getwd())
 
 # Conversion to selection table (cf vignette 1)
-st <- selection_table(X = select_t, pb = FALSE)
+st <- selection_table(X = select_t,
+                      pb = FALSE,
+                      path = getwd())
+
+# Wave object
+wv1 <- read_wave(X = st, index = 3, from = 0, to = 0.37, path = getwd())
+
+class(wv1)
+spectro(wv1,
+        wl = 150,
+        grid = F,
+        scale = F,
+        ovlp = 90)
