@@ -7,6 +7,21 @@ fight <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/Raven
                      h = T,
                      dec = '.',
                      sep = '\t')
+fight$bottom.freq[fight$bottom.freq > 0] <- 0
+is_extended_selection_table(fight)
+
+fight_ext <- selection_table(fight, 
+                             pb = F,
+                             extended = TRUE,
+                             confirm.extended = F,
+                             path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example')
+# long spectrogram for first visualization
+full_spectrograms(fight,
+                  path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example',
+                  sxrow = 7)
+sig2noise(fight,
+             path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example')
+
 # test
 wv1 <- read_wave(X = fight,
                  index = 1,
@@ -61,15 +76,20 @@ for(i in 1:length(fight2$sound.files)){
 
 
 #### Flight call spectro ####
-flight1 <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example/flight_type1_Selections.txt",
+flight1 <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/Raven_selection_table/flight_type1_Selections.txt",
                       h = T,
                       dec = '.',
                       sep = '\t')
 
-flight2 <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example/flight_type2_Selections.txt",
+full_spectrograms(flight1,
+                  path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example')
+
+flight2 <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/Raven_selection_table/flight_type2_Selections.txt",
                       h = T,
                       dec = '.',
                       sep = '\t')
+full_spectrograms(flight2,
+                  path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example')
 
 wv1 <- read_wave(X = flight1,
                  index = 3,
@@ -176,10 +196,15 @@ for(i in 1:length(flight$sound.files)){
 
 #### Ground call spectro ####
 # Test with selection table coming from Raven lite 2 software
-ground <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example/ground_Selections.txt",
+ground <- read.table("C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/Raven_selection_table/ground_Selections.txt",
                      h = T,
                      dec = '.',
                      sep = '\t')
+full_spectrograms(ground,
+                  path = 'C:/Users/Etudiant/Desktop/SMAC/GITHUB/PNB_bioacoustic/warbleR_example',
+                  sxrow = 15 # seconds per row
+                  )
+
 wv2 <- read_wave(X = ground,
                  index = 3,
                  from = 0,
